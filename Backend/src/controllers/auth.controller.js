@@ -98,7 +98,7 @@ async function loginUserController(req,res){
         message: "User loggedIn successfully",
         user:{
             id: user._id,
-            useranme: user.username,
+            username: user.username,
             email : user.email,
         }
     });
