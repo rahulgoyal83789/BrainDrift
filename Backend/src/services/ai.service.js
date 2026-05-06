@@ -5,7 +5,6 @@ const ai = new GoogleGenAI({
     apiKey: process.env.GOOGLE_GENAI_API_KEY
 });
 
-// Define schema in Gemini's native format (not zodToJsonSchema)
 const geminiSchema = {
     type: "object",
     properties: {
@@ -65,12 +64,15 @@ const geminiSchema = {
                 },
                 required: ["day", "focus", "tasks"]
             }
+        },
+        title: {
+            type: "string",
+            description: "The title of the job for which the interview report is generated"
         }
     },
-    required: ["matchScore", "technicalQuestions", "behavioralQuestions", "skillGaps", "preparationPlan"]
+    required: ["matchScore", "technicalQuestions", "behavioralQuestions", "skillGaps", "preparationPlan", "title"]
 };
 
-// Zod schema for validation after parsing
 const interviewReportSchema = z.object({
     matchScore: z.number().min(0).max(100),
     technicalQuestions: z.array(z.object({
@@ -92,6 +94,7 @@ const interviewReportSchema = z.object({
         focus: z.string(),
         tasks: z.array(z.string()),
     })),
+    title: z.string().describe("The title of the job for which the interview report is generated"),
 });
 
 async function generateInterviewReport({ resume, selfDescription, jobDescription }) {
@@ -107,9 +110,10 @@ async function generateInterviewReport({ resume, selfDescription, jobDescription
     - At least 5 behavioral questions with intention and answer guidance
     - Skill gaps with severity (low/medium/high)
     - A preparation plan where YOU decide the number of days based on how long it would 
-  realistically take an average person to fully prepare for this interview given their 
-  current profile, skill gaps, and the job requirements. 
-  Do not fix it to any number, estimate it honestly.`;
+      realistically take an average person to fully prepare for this interview given their 
+      current profile, skill gaps, and the job requirements. 
+      Do not fix it to any number, estimate it honestly.
+    - The job title extracted from the job description`;
 
     const response = await ai.models.generateContent({
         model: "gemini-2.5-flash-lite",
@@ -122,7 +126,6 @@ async function generateInterviewReport({ resume, selfDescription, jobDescription
 
     const reportData = JSON.parse(response.text);
     
-    // Validate with Zod
     return interviewReportSchema.parse(reportData);
 }
 

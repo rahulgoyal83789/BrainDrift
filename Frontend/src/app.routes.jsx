@@ -2,6 +2,8 @@ import {createBrowserRouter} from 'react-router';
 import Register from "./features/auth/pages/Register";
 import Login from "./features/auth/pages/Login";
 import Protected from "./features/auth/components/Protected.jsx";
+import Home from './features/interview/pages/Home.jsx';
+import Interview from './features/interview/pages/Interview.jsx';
 
 export const router = createBrowserRouter([
     {
@@ -14,6 +16,10 @@ export const router = createBrowserRouter([
     },
     {
         path: "/",
-        element: <Protected><h1>Welcome to BrainDrift Home page!</h1></Protected>
+        element: <Protected><Home/></Protected>
+    },
+    {
+        path: "/interview/:interviewId",
+        element: <Protected><Interview/></Protected>
     }
 ]);
