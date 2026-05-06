@@ -23,10 +23,16 @@
 ### 🗺️ Preparation Road Map
 ![Preparation Road Map](screenshots/interview_preparation_plan.png)
 
-### 📄 AI-Generated Resume PDF
+### 📄 AI-Generated Resume PDF - 1
 | Page 1 | Page 2 |
 |---|---|
 | ![Resume Page 1](screenshots/resume_page_1.png) | ![Resume Page 2](screenshots/resume_page_2.png) |
+
+---
+### 📄 AI-Generated Resume PDF - 2
+| Page 1 | Page 2 | Page 3 |
+|---|---|---|
+| ![Resume Page 1](screenshots/resume_2_page_1.png) | ![Resume Page 2](screenshots/resume_2_page_2.png) | ![Resume Page 2](screenshots/resume_2_page_3.png) |
 
 ---
 
