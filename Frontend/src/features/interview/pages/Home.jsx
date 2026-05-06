@@ -123,7 +123,7 @@ const Home = () => {
 
 
             {/* Recent Reports List Section */}
-            {reports.length > 0 && (
+            {reports?.length > 0 && (
                 <div className='recent-reports'>
                     <h2>My Recent Interview Plans</h2>
                     <ul className='reports-list'>
